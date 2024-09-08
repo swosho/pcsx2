@@ -64,9 +64,9 @@ jobs:
            fetch-depth: 0
 
       # actions/checkout elides tags, fetch them primarily for releases
-      - name: Fetch Tags
-        if: ${{ inputs.fetchTags }}
-        run: git fetch --tags --no-recurse-submodules
+      #- name: Fetch Tags
+      #  if: ${{ inputs.fetchTags }}
+      #  run: git fetch --tags --no-recurse-submodules
 
       - name: Add stable release identifier file
         if: ${{ inputs.stableBuild == true || inputs.stableBuild == 'true' }}

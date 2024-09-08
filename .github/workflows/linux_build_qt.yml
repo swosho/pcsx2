@@ -61,17 +61,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          set-safe-directory: ${{ env.GITHUB_WORKSPACE }}
-
-      # Work around container ownership issue
-      - name: Set Safe Directory
-        shell: bash
-        run: git config --global --add safe.directory "*"
+           fetch-depth: 0
 
       # actions/checkout elides tags, fetch them primarily for releases
       - name: Fetch Tags
         if: ${{ inputs.fetchTags }}
-        run: git fetch --tags --no-recurse-submodules
+        run: git fetch --tags --recurse-submodules=no
 
       - name: Add stable release identifier file
         if: ${{ inputs.stableBuild == true || inputs.stableBuild == 'true' }}
